@@ -2,6 +2,7 @@ import java.io.File;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.util.Random;
+import java.util.Arrays;
 
 public class Battleship {
 
@@ -51,6 +52,11 @@ public class Battleship {
             String guess = guessScanner.nextLine();
 
             int shipHit = fireMissile(board, guess, playerTwoShips, hitsLeft);
+            if (shipHit == 1) {
+                System.out.println("Hit!");
+            } else {
+                System.out.println("Miss!");
+            }
         }
     }
 
@@ -58,6 +64,9 @@ public class Battleship {
         String[] shipLocations, int hitsLeft) {
         // YOUR CODE BELOW: updates the board given the missile
         //  target and returns if a ship is hit
+        int[] location = convertLocation(target);
+        System.out.println(Arrays.toString(location));
+
         return 0;
     }
 
@@ -69,7 +78,10 @@ public class Battleship {
     public static int[] convertLocation(String coordinate) {
         // YOUR CODE BELOW: returns the integer indices corresponding
         //  with the coordinate string
-        return null;
+        int[] output = {Character.getNumericValue(coordinate.charAt(0)) - 10,
+            Character.getNumericValue(coordinate.charAt(1)) - 1};
+
+        return output;
     }
 
     public static void main(String[] args) {
@@ -95,8 +107,18 @@ public class Battleship {
             playerOneHits = playerOneShips.length;
             playerTwoHits = playerTwoShips.length;
 
-            printBoard(1, board1, playerOneHits);
 
+            while (playerOneHits > 0 || playerTwoHits > 0 ) {
+                printBoard(1, board1, playerOneHits);
+
+                if (playerOneHits == 0) {
+                    break;
+                }
+                System.out.println("\n----------\n");
+
+
+                printBoard(2, board2, playerTwoHits);
+            }
 
         } catch (FileNotFoundException e) {
             System.out.println("Make sure that " + filename
