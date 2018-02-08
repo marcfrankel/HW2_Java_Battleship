@@ -217,7 +217,7 @@ public class Battleship {
      * carries out the execution of the game
      *
      * @param args Passed in arguments from the console
-     *
+     * @throws FileNotFoundException if it can't find game file
      */
     public static void main(String[] args) {
         int fileInd = (args.length > 0) ? Integer.parseInt(args[0])
