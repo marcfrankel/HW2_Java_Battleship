@@ -2,7 +2,7 @@ import java.io.File;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.util.Random;
-import java.util.Arrays;
+
 
 public class Battleship {
 
@@ -65,13 +65,17 @@ public class Battleship {
         // YOUR CODE BELOW: updates the board given the missile
         //  target and returns if a ship is hit
         int[] location = convertLocation(target);
-        System.out.println(Arrays.toString(location));
 
         return 0;
     }
 
     public static boolean isShip(String target, String[] shipLocations) {
         // YOUR CODE BELOW: returns if location is ship
+         for (String s: shipLocations) {
+            if (target.equals(s)) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -106,7 +110,6 @@ public class Battleship {
             playerTwoShips = fileReader.nextLine().split("\\s+");
             playerOneHits = playerOneShips.length;
             playerTwoHits = playerTwoShips.length;
-
 
             while (playerOneHits > 0 || playerTwoHits > 0 ) {
                 printBoard(1, board1, playerOneHits);
