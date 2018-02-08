@@ -5,6 +5,14 @@ import java.util.Random;
 
 public class Battleship {
 
+    boolean isPlayerOneTurn = true;
+    boolean gameOver = false;
+    static int playerOneHits = 7;
+    static int playerTwoHits = 7;
+    static int boardSize = 0;
+    static String[] playerOneShips;
+    static String[] playerTwoShips;
+
     public static char[][] initBoard(int n) {
         char[][] output = new char [n][n];
         for (int row = 0; row < n; row++) {
@@ -37,6 +45,12 @@ public class Battleship {
                 }
                 System.out.print("\n");
             }
+
+            System.out.print("Enter missile location: ");
+            Scanner guessScanner = new Scanner(System.in);
+            String guess = guessScanner.nextLine();
+
+            int shipHit = fireMissile(board, guess, playerTwoShips, hitsLeft);
         }
     }
 
@@ -63,11 +77,7 @@ public class Battleship {
             : new Random().nextInt(4);
 
         String filename = "game" + fileInd + ".txt";
-        boolean isPlayerOneTurn = true;
-        boolean gameOver = false;
-        int playerOneTurns = 7;
-        int playerTwoTurns = 7;
-        int boardSize = 0;
+
 
 
         try {
@@ -78,11 +88,14 @@ public class Battleship {
 
 
             boardSize = Integer.parseInt(fileReader.nextLine());
-            char[][] board = initBoard(boardSize);
+            char[][] board1 = initBoard(boardSize);
+            char[][] board2 = initBoard(boardSize);
+            playerOneShips = fileReader.nextLine().split("\\s+");
+            playerTwoShips = fileReader.nextLine().split("\\s+");
+            playerOneHits = playerOneShips.length;
+            playerTwoHits = playerTwoShips.length;
 
-
-
-            printBoard(1, board, playerOneTurns);
+            printBoard(1, board1, playerOneHits);
 
 
         } catch (FileNotFoundException e) {
