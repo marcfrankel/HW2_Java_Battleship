@@ -3,26 +3,24 @@ import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.util.Random;
 
-
 public class Battleship {
 
-    boolean isPlayerOneTurn = true;
-    boolean gameOver = false;
-    static int playerOneHits = 7;
-    static int playerTwoHits = 7;
-    static int boardSize = 0;
-    static String[] playerOneShips;
-    static String[] playerTwoShips;
+    private boolean isPlayerOneTurn = true;
+    private boolean gameOver = false;
+    private static int playerOneHits = 7;
+    private static int playerTwoHits = 7;
+    private static int boardSize = 0;
+    private static String[] playerOneShips;
+    private static String[] playerTwoShips;
 
     public static char[][] initBoard(int n) {
-        char[][] output = new char [n][n];
+        char[][] output = new char[n][n];
         for (int row = 0; row < n; row++) {
 
             for (int column = 0; column < n; column++) {
                 output[row][column] = "~".charAt(0);
             }
         }
-
         return output;
     }
 
@@ -37,9 +35,9 @@ public class Battleship {
             for (int row = 0; row < board.length; row++) {
 
                 for (int column = 0; column < board.length; column++) {
-                    if (column < board.length - 1){
-                        System.out.print(String.valueOf(board[row][column]) +
-                            " ");
+                    if (column < board.length - 1) {
+                        System.out.print(String.valueOf(board[row][column])
+                            + " ");
                     } else {
                         System.out.print(String.valueOf(board[row][column]));
                     }
@@ -67,9 +65,9 @@ public class Battleship {
             for (int row = 0; row < board.length; row++) {
 
                 for (int column = 0; column < board.length; column++) {
-                    if (column < board.length - 1){
-                        System.out.print(String.valueOf(board[row][column]) +
-                            " ");
+                    if (column < board.length - 1) {
+                        System.out.print(String.valueOf(board[row][column])
+                            + " ");
                     } else {
                         System.out.print(String.valueOf(board[row][column]));
                     }
@@ -84,9 +82,9 @@ public class Battleship {
             for (int row = 0; row < board.length; row++) {
 
                 for (int column = 0; column < board.length; column++) {
-                    if (column < board.length - 1){
-                        System.out.print(String.valueOf(board[row][column]) +
-                            " ");
+                    if (column < board.length - 1) {
+                        System.out.print(String.valueOf(board[row][column])
+                            + " ");
                     } else {
                         System.out.print(String.valueOf(board[row][column]));
                     }
@@ -114,13 +112,12 @@ public class Battleship {
             for (int row = 0; row < board.length; row++) {
 
                 for (int column = 0; column < board.length; column++) {
-                    if (column < board.length - 1){
-                        System.out.print(String.valueOf(board[row][column]) +
-                            " ");
+                    if (column < board.length - 1) {
+                        System.out.print(String.valueOf(board[row][column])
+                            + " ");
                     } else {
                         System.out.print(String.valueOf(board[row][column]));
                     }
-
                 }
                 System.out.print("\n");
             }
@@ -134,7 +131,6 @@ public class Battleship {
         int[] location = convertLocation(target);
 
         if (isShip(target, shipLocations)) {
-
 
             if (String.valueOf(board[location[0]][location[1]]).equals("~")) {
                 board[location[0]][location[1]] = "X".charAt(0);
@@ -151,7 +147,7 @@ public class Battleship {
 
     public static boolean isShip(String target, String[] shipLocations) {
         // YOUR CODE BELOW: returns if location is ship
-         for (String s: shipLocations) {
+        for (String s: shipLocations) {
             if (target.equals(s)) {
                 return true;
             }
@@ -174,14 +170,11 @@ public class Battleship {
 
         String filename = "game" + fileInd + ".txt";
 
-
-
         try {
             Scanner fileReader = new Scanner(new File(filename));
             Scanner inputScanner = new Scanner(System.in);
             // YOUR CODE BELOW: carries out the execution of the game
             //  using the methods defined above
-
 
             boardSize = Integer.parseInt(fileReader.nextLine());
             char[][] board1 = initBoard(boardSize);
@@ -191,11 +184,8 @@ public class Battleship {
             playerOneHits = playerOneShips.length;
             playerTwoHits = playerTwoShips.length;
 
-
-            while (playerOneHits > 0 || playerTwoHits > 0 ) {
+            while (playerOneHits > 0 || playerTwoHits > 0) {
                 printBoard(1, board1, playerOneHits);
-
-
 
                 System.out.println("\n----------\n");
 
