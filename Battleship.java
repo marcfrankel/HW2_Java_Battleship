@@ -38,7 +38,8 @@ public class Battleship {
 
                 for (int column = 0; column < board.length; column++) {
                     if (column < board.length - 1){
-                        System.out.print(String.valueOf(board[row][column]) + " ");
+                        System.out.print(String.valueOf(board[row][column]) +
+                            " ");
                     } else {
                         System.out.print(String.valueOf(board[row][column]));
                     }
@@ -55,6 +56,7 @@ public class Battleship {
             if (shipHit == 1) {
                 System.out.println("Hit!");
                 hitsLeft--;
+                playerOneHits--;
             } else if (shipHit == 0) {
                 System.out.println("Miss!");
             } else {
@@ -66,7 +68,8 @@ public class Battleship {
 
                 for (int column = 0; column < board.length; column++) {
                     if (column < board.length - 1){
-                        System.out.print(String.valueOf(board[row][column]) + " ");
+                        System.out.print(String.valueOf(board[row][column]) +
+                            " ");
                     } else {
                         System.out.print(String.valueOf(board[row][column]));
                     }
@@ -82,7 +85,8 @@ public class Battleship {
 
                 for (int column = 0; column < board.length; column++) {
                     if (column < board.length - 1){
-                        System.out.print(String.valueOf(board[row][column]) + " ");
+                        System.out.print(String.valueOf(board[row][column]) +
+                            " ");
                     } else {
                         System.out.print(String.valueOf(board[row][column]));
                     }
@@ -99,6 +103,7 @@ public class Battleship {
             if (shipHit == 1) {
                 System.out.println("Hit!");
                 hitsLeft--;
+                playerTwoHits--;
             } else if (shipHit == 0) {
                 System.out.println("Miss!");
             } else {
@@ -110,7 +115,8 @@ public class Battleship {
 
                 for (int column = 0; column < board.length; column++) {
                     if (column < board.length - 1){
-                        System.out.print(String.valueOf(board[row][column]) + " ");
+                        System.out.print(String.valueOf(board[row][column]) +
+                            " ");
                     } else {
                         System.out.print(String.valueOf(board[row][column]));
                     }
@@ -132,7 +138,6 @@ public class Battleship {
 
             if (String.valueOf(board[location[0]][location[1]]).equals("~")) {
                 board[location[0]][location[1]] = "X".charAt(0);
-                playerOneHits--;
                 return 1;
             } else {
 
@@ -190,16 +195,22 @@ public class Battleship {
             while (playerOneHits > 0 || playerTwoHits > 0 ) {
                 printBoard(1, board1, playerOneHits);
 
+
+
+                System.out.println("\n----------\n");
+
                 if (playerOneHits == 0) {
                     break;
                 }
 
-                System.out.println("\n----------\n");
-
-
                 printBoard(2, board2, playerTwoHits);
 
                 System.out.println("\n----------\n");
+            }
+            if (playerOneHits == 0) {
+                System.out.println("The winner is Player 1");
+            } else {
+                System.out.println("The winner is Player 2");
             }
 
         } catch (FileNotFoundException e) {
