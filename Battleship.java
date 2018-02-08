@@ -54,8 +54,69 @@ public class Battleship {
             int shipHit = fireMissile(board, guess, playerTwoShips, hitsLeft);
             if (shipHit == 1) {
                 System.out.println("Hit!");
-            } else {
+                hitsLeft--;
+            } else if (shipHit == 0) {
                 System.out.println("Miss!");
+            } else {
+                System.out.println("target(" + guess
+                    + ") has already been chosen!");
+            }
+            System.out.println("Player 1 (" + hitsLeft + " hits left):");
+            for (int row = 0; row < board.length; row++) {
+
+                for (int column = 0; column < board.length; column++) {
+                    if (column < board.length - 1){
+                        System.out.print(String.valueOf(board[row][column]) + " ");
+                    } else {
+                        System.out.print(String.valueOf(board[row][column]));
+                    }
+
+                }
+                System.out.print("\n");
+            }
+        } else {
+            //make exact copy as above
+            System.out.println("Player 2 (" + hitsLeft + " hits left):");
+
+            for (int row = 0; row < board.length; row++) {
+
+                for (int column = 0; column < board.length; column++) {
+                    if (column < board.length - 1){
+                        System.out.print(String.valueOf(board[row][column]) + " ");
+                    } else {
+                        System.out.print(String.valueOf(board[row][column]));
+                    }
+
+                }
+                System.out.print("\n");
+            }
+
+            System.out.print("Enter missile location: ");
+            Scanner guessScanner = new Scanner(System.in);
+            String guess = guessScanner.nextLine();
+
+            int shipHit = fireMissile(board, guess, playerOneShips, hitsLeft);
+            if (shipHit == 1) {
+                System.out.println("Hit!");
+                hitsLeft--;
+            } else if (shipHit == 0) {
+                System.out.println("Miss!");
+            } else {
+                System.out.println("target(" + guess
+                    + ") has already been chosen!");
+            }
+            System.out.println("Player 2 (" + hitsLeft + " hits left):");
+            for (int row = 0; row < board.length; row++) {
+
+                for (int column = 0; column < board.length; column++) {
+                    if (column < board.length - 1){
+                        System.out.print(String.valueOf(board[row][column]) + " ");
+                    } else {
+                        System.out.print(String.valueOf(board[row][column]));
+                    }
+
+                }
+                System.out.print("\n");
             }
         }
     }
@@ -66,6 +127,20 @@ public class Battleship {
         //  target and returns if a ship is hit
         int[] location = convertLocation(target);
 
+        if (isShip(target, shipLocations)) {
+
+
+            if (String.valueOf(board[location[0]][location[1]]).equals("~")) {
+                board[location[0]][location[1]] = "X".charAt(0);
+                playerOneHits--;
+                return 1;
+            } else {
+
+                return 2;
+            }
+        } else {
+            board[location[0]][location[1]] = "O".charAt(0);
+        }
         return 0;
     }
 
@@ -111,16 +186,20 @@ public class Battleship {
             playerOneHits = playerOneShips.length;
             playerTwoHits = playerTwoShips.length;
 
+
             while (playerOneHits > 0 || playerTwoHits > 0 ) {
                 printBoard(1, board1, playerOneHits);
 
                 if (playerOneHits == 0) {
                     break;
                 }
+
                 System.out.println("\n----------\n");
 
 
                 printBoard(2, board2, playerTwoHits);
+
+                System.out.println("\n----------\n");
             }
 
         } catch (FileNotFoundException e) {
