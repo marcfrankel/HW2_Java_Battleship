@@ -11,11 +11,9 @@ import java.util.Random;
 
 public class Battleship {
 
-    private boolean isPlayerOneTurn = true;
-    private boolean gameOver = false;
-    private static int playerOneHits = 7;
-    private static int playerTwoHits = 7;
-    private static int boardSize = 0;
+    private static int playerOneHits;
+    private static int playerTwoHits;
+    private static int boardSize;
     private static String[] playerOneShips;
     private static String[] playerTwoShips;
 
@@ -244,13 +242,10 @@ public class Battleship {
 
                 System.out.println("\n----------\n");
 
-                if (playerOneHits == 0) {
-                    break;
+                if (playerOneHits != 0) {
+                    printBoard(2, board2, playerTwoHits);
+                    System.out.println("\n----------\n");
                 }
-
-                printBoard(2, board2, playerTwoHits);
-
-                System.out.println("\n----------\n");
             }
             if (playerOneHits == 0) {
                 System.out.println("The winner is Player 1");
