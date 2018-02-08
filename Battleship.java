@@ -3,6 +3,12 @@ import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.util.Random;
 
+/**
+ * A simple battleship game
+ * @author mfrankel8
+ * @version 1.0
+**/
+
 public class Battleship {
 
     private boolean isPlayerOneTurn = true;
@@ -13,6 +19,13 @@ public class Battleship {
     private static String[] playerOneShips;
     private static String[] playerTwoShips;
 
+    /**
+     * creates a char array based board
+     *
+     * @param n the size of the board (nxn)
+     * @return The char[][] array
+     *
+     */
     public static char[][] initBoard(int n) {
         char[][] output = new char[n][n];
         for (int row = 0; row < n; row++) {
@@ -24,6 +37,14 @@ public class Battleship {
         return output;
     }
 
+    /**
+     * Prints the board and controls the main game logic
+     *
+     * @param playerTurn who's turn it is (1 or 2)
+     * @param board the player's board
+     * @param hitsLeft how many hits the player has remaining
+     *
+     */
     public static void printBoard(int playerTurn, char[][] board,
         int hitsLeft) {
         // YOUR CODE BELOW: prints the board and player information
@@ -124,6 +145,18 @@ public class Battleship {
         }
     }
 
+    /**
+     * updates the board given the missile target and returns if a ship is hit
+     *
+     * @param board the player's board
+     * @param target the target coordinate
+     * @param shipLocations String array of enemy's ships
+     * @param hitsLeft How many hits left the player has
+     *
+     * @return result of missle firing
+     *
+     */
+
     public static int fireMissile(char[][] board, String target,
         String[] shipLocations, int hitsLeft) {
         // YOUR CODE BELOW: updates the board given the missile
@@ -145,6 +178,14 @@ public class Battleship {
         return 0;
     }
 
+    /**
+     * returns if location is ship
+     *
+     * @param target the target coordinate
+     * @param shipLocations String array of enemy's ships
+     * @return returns true if the target is in the enemy string array
+     *
+     */
     public static boolean isShip(String target, String[] shipLocations) {
         // YOUR CODE BELOW: returns if location is ship
         for (String s: shipLocations) {
@@ -155,6 +196,14 @@ public class Battleship {
         return false;
     }
 
+    /**
+     * returns the integer indices corresponding with the coordinate string
+     *
+     * @param coordinate string coord to be converted
+     *
+     * @return returns the converted coord as an int array
+     *
+     */
     public static int[] convertLocation(String coordinate) {
         // YOUR CODE BELOW: returns the integer indices corresponding
         //  with the coordinate string
@@ -164,6 +213,12 @@ public class Battleship {
         return output;
     }
 
+    /**
+     * carries out the execution of the game
+     *
+     * @param args Passed in arguments from the console
+     *
+     */
     public static void main(String[] args) {
         int fileInd = (args.length > 0) ? Integer.parseInt(args[0])
             : new Random().nextInt(4);
